@@ -212,16 +212,18 @@ public class PostController {
         if (post==null) return null;
         User user = userRepository.findById(post.getUserId()).orElseThrow();
         String userName;
-        if(user.getId()==1) userName=user.getUserName();
-        else {
-            //User admin=userRepository.findById(1).orElseThrow();
-            //userName=admin.getUserName();
-            userName="Lerei Music Store";
-        }
         post.setViews(post.getViews()+1);
         postRepo.save(post);
-        PostDto postDto=new PostDto(post,userName);
-        return postDto;
+        if(user.getId()==1) {
+            userName = user.getUserName();
+            return new PostDto(post,userName);
+        }else {
+            User admin = userRepository.findById(1).orElseThrow();
+            userName="Lerei Music Store";
+            String email = admin.getEmail();
+            String phoneNo = admin.getPhoneNo();
+            return  new PostDto(post,userName, email, phoneNo);
+        }
     }
 
     @GetMapping("/get-my-post-by-id/{postId}")
