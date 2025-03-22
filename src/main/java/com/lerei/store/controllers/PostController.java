@@ -18,7 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Locale;
 
 @RestController
+@CrossOrigin("*")
 public class PostController {
     @Autowired
     private PostService postService;
@@ -41,7 +42,7 @@ public class PostController {
     @Autowired
     private PostRepo postRepo;
     private FileController fileController = new FileController();
-    private final String baseLocation = "src/main/resources/static/files";
+    private final String baseLocation = "/opt/storage/files";
     private final String filesFolder = "/files";
     @Transactional
     @PostMapping(value = "/uploadPost", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -206,6 +207,25 @@ public class PostController {
     public List<Post> getAllPostsOrderBy(@PathVariable String order){
         return postService.getAllPostsOrderBy(order);
     }
+/*
+    @GetMapping("/get-post-by-id/{postId}")
+    public PostDto getPostById(@PathVariable Integer postId){
+        Post post = postRepo.findById(postId).orElse(null);
+        if (post==null) return null;
+        User user = userRepository.findById(post.getUserId()).orElseThrow();
+        String userName;
+        if(user.getId()==1) userName=user.getUserName();
+        else {
+            //User admin=userRepository.findById(1).orElseThrow();
+            //userName=admin.getUserName();
+            userName="Lerei Music Store";
+        }
+        post.setViews(post.getViews()+1);
+        postRepo.save(post);
+        PostDto postDto=new PostDto(post,userName);
+        return postDto; 
+   }
+*/
     @GetMapping("/get-post-by-id/{postId}")
     public PostDto getPostById(@PathVariable Integer postId){
         Post post = postRepo.findById(postId).orElse(null);

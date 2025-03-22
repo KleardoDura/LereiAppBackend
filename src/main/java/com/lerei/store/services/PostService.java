@@ -98,13 +98,13 @@ public class PostService {
     public void sendEmailNewPostAdded(Integer postId, String username){
 
         // lereimusic@gmail.com
-        senderService.sendEmail("kleardodura13@gmail.com",
+        senderService.sendEmail("lereimusic@gmail.com",
                 "POSTIM I RI",
                 "Pershendetje,\n\n" +
                         "Perdoruesi " + username + " sapo shtoje nje postim te ri.\n" +
                         "Per te kontrolluar apo fshire kete postim te ri ju lutem hyni ne portal dhe kilkoni linkun e " +
                         "meposhtem:\n" +
-                        "http://localhost:3000/myproduct/"+postId+" \n" +
+                        "https://lereimusic.com/myproduct/"+postId+" \n" +
                         "Faleminderit\n" +
                         "");
 

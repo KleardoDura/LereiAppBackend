@@ -49,7 +49,7 @@ public class MainSecurity {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.cors().configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.setAllowedOrigins(List.of("http://localhost:3000","http://147.93.123.232:3000","http://lereimusic.com","https://lereimusic.com"));
+                    configuration.setAllowedOrigins(List.of("http://localhost:3000","http://147.93.123.232:3000","https://147.93.123.232:3000","http://lereimusic.com","https://lereimusic.com"));
                     configuration.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));
                     configuration.setAllowCredentials(true);
                     configuration.addExposedHeader("Message");
