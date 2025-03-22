@@ -9,7 +9,7 @@ import java.io.File;
 @Component
 public class DirectoryInitializer {
 
-    private final String baseLocation = "src/main/resources/static/files"; // Adjust to your desired location
+    private final String baseLocation = "/opt/storage/files/"; // Adjust to your desired location
 
     @PostConstruct //This annotation ensures that the initializeDirectories() method runs after the Spring Boot application context is initialized.
     public void initializeDirectories() {

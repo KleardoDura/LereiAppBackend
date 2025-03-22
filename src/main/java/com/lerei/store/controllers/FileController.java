@@ -18,10 +18,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
+@CrossOrigin("*")
 public class FileController {
-    private final String baseLocation = "src/main/resources/static/files";
+    private final String baseLocation = "/opt/storage/files";
     @Autowired
     private MessageSource messageSource;
     @Autowired
@@ -30,7 +32,7 @@ public class FileController {
     @GetMapping("/files/{folder}/{subfolder}/{imageName}")
     @ResponseBody
     public Resource serveImage(@PathVariable String folder, @PathVariable String subfolder, @PathVariable String imageName) throws IOException {
-        Path imagePath = Paths.get("src/main/resources/static/files/" + folder + "/"+subfolder+"/" + imageName);
+        Path imagePath = Paths.get("/opt/storage/files/" + folder + "/"+subfolder+"/" + imageName);
         Resource resource = new UrlResource(imagePath.toUri());
 
         if (resource.exists() || resource.isReadable()) {
@@ -78,7 +80,7 @@ public class FileController {
     public String deleteFile(@RequestParam String filePath, Locale locale) {
         filePath = filePath.startsWith("/") ? filePath.substring(1) : filePath;
         try {
-            Path fullPath = Paths.get("src/main/resources/static").resolve(filePath).normalize();
+            Path fullPath = Paths.get("/opt/storage").resolve(filePath).normalize();
             Files.delete(fullPath);  // delete the file if it exists
 
             // Remove the file extension ".png"

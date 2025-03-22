@@ -28,8 +28,9 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/user")
 public class UserController {
 

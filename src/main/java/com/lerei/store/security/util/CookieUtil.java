@@ -12,7 +12,7 @@ public class CookieUtil {
         Cookie cookie = new Cookie(name, value);
         cookie.setSecure(secure);
         cookie.setHttpOnly(true);
-        cookie.setMaxAge(maxAge);
+	cookie.setMaxAge(maxAge);
         cookie.setDomain(domain);
         cookie.setPath("/");
         httpServletResponse.addCookie(cookie);
@@ -20,9 +20,9 @@ public class CookieUtil {
     public static void clear(HttpServletResponse httpServletResponse, String name){
         Cookie cookie = new Cookie(name, null);
         cookie.setPath("/");
-        cookie.setHttpOnly(true);
+        cookie.setHttpOnly(true); 
         cookie.setMaxAge(1);
-        cookie.setDomain("localhost");
+        cookie.setDomain("lereimusic.com");
         httpServletResponse.addCookie(cookie);
     }
 }
