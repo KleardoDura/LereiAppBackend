@@ -22,4 +22,6 @@ public class Category {
     @Column(name = "category_name")
     private String name;
     private String link;
+    @Column(name = "view_id")
+    private Integer viewId;
 }

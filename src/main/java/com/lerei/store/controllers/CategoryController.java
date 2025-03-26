@@ -17,6 +17,6 @@ public class CategoryController {
 
     @GetMapping("/get-categories")
     public List<Category> getAllCategories(){
-        return  categoryRepo.findAll();
+        return  categoryRepo.findAllByOrderByViewIdAsc();
     }
 }

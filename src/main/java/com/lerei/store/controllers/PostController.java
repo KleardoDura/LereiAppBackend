@@ -29,6 +29,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -245,6 +246,17 @@ public class PostController {
             return  new PostDto(post,userName, email, phoneNo);
         }
     }
+
+    @PostMapping("/search")
+    public List<Post> searchPostByName(@RequestBody Map<String, String> requestBody) {
+        String title = requestBody.get("title");
+        System.out.println("Searching for: " + title);  // Log title to check
+        List<Post> posts = postRepo.searchByName("%" + title + "%");
+        System.out.println("Results found: " + posts.size());
+        return posts;
+    }
+
+
 
     @GetMapping("/get-my-post-by-id/{postId}")
     public Post getMyPostById(@PathVariable Integer postId){

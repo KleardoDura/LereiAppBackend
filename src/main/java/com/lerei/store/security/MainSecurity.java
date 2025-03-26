@@ -49,7 +49,7 @@ public class MainSecurity {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.cors().configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.setAllowedOrigins(List.of("http://localhost:3000","http://147.93.123.232:3000","https://147.93.123.232:3000","http://lereimusic.com","https://lereimusic.com"));
+                    configuration.setAllowedOrigins(List.of("http://localhost:3000","http://147.93.123.232:3000","https://147.93.123.232:3000","http://lereimusic.com","https://lereimusic.com","http://www.lereimusic.com","https://www.lereimusic.com"));
                     configuration.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));
                     configuration.setAllowCredentials(true);
                     configuration.addExposedHeader("Message");
@@ -58,7 +58,7 @@ public class MainSecurity {
                 }).and().csrf().disable()
         .authorizeRequests()
         .antMatchers("/auth/login", "/auth/register", "/auth/logout","/auth/verify-and-register/**","/auth/register-without-verification-code","/get-all-posts","/get-post-by-id/**"
-        ,"/get-post-by-category-id/**","/get-categories","/files/**","/swagger-ui.html/**","/posts/order/**"
+        ,"/get-post-by-category-id/**","/get-categories","/files/**","/swagger-ui.html/**","/posts/order/**","/search/**"
         ,"/posts/category/**")
         .permitAll()
         .anyRequest().authenticated()

@@ -51,4 +51,8 @@ public interface PostRepo extends JpaRepository<Post,Integer> {
     @Query("SELECT p FROM Post p WHERE p.userId <> :userId AND p.categoryId = :categoryId ORDER BY p.id DESC")
     List<Post> findByNotUserIdAndCategoryId(@Param("userId") Integer userId, @Param("categoryId") Integer categoryId);
     // findByNotUserIdAndCategoryId
+
+    @Query("SELECT p FROM Post p WHERE LOWER(p.title) LIKE LOWER(:title)")
+    List<Post> searchByName(@Param("title") String title);
+
 }
