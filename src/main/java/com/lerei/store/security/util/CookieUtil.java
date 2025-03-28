@@ -25,8 +25,8 @@ public class CookieUtil {
         cookie.setPath("/");
         cookie.setHttpOnly(true); 
         cookie.setMaxAge(1);
-        //cookie.setDomain("lereimusic.com");
-        cookie.setDomain(hostFromValue);
+        cookie.setDomain("lereimusic.com");
+        //cookie.setDomain(hostFromValue);
         httpServletResponse.addCookie(cookie);
     }
 }
